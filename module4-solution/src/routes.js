@@ -21,15 +21,16 @@ templateUrl: 'src/data/templates/home.template.html'
 
 // Categories page
 .state('categories', {
-url: '/categories',
-templateUrl: 'src/data/templates/categories.template.html',
-controller: 'CategoriesController as ctrl',
-resolve: {
-  categories: ['MenuDataService', function () {
-    return MenuDataService.getAllCategories();
-  }]
-}
-})
+        url: '/categories',
+        templateUrl: 'src/data/templates/categories.template.html',
+        controller: 'CategoriesController as ctrl',
+        resolve: {
+          categoriesItems: ['MenuDataService', function(MenuDataService) {
+            console.log(this);
+            return MenuDataService.getAllCategories();
+          }]
+        }
+      })
 
 // Item detail
 .state('items', {
@@ -39,7 +40,7 @@ controller: 'ItemsController as ctrl',
 resolve: {
   item: ['$stateParams', 'MenuDataService',
     function ($stateParams, MenuDataService) {
-      return MenuDataService.getItemsForCategory($stateParams.shoshortName);
+      return MenuDataService.getItemsForCategory($stateParams.shortName);
     }
   ]
 }
