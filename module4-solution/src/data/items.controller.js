@@ -1,13 +1,15 @@
 (function () {
-'use strict'
 
-angular.module('MenuApp')
-.controller('ItemsController', ItemsController);
+	angular.module('MenuApp')
+	.controller('itemsController', itemsController);
 
-ItemsController.$inject = ['item'];
-function ItemsController(item) {
-  var ctrl = this;
-  ctrl.items = item.menu_items;
-}
+	itemsController.$inject = ['item'];
+	function itemsController (item) {
+		console.log("Iems controller is being called");
+		var ctrl = this;
+		console.log(item);
+		ctrl.items = item.menu_items;
+
+	}
 
 })();

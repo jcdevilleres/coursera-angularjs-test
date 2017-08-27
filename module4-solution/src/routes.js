@@ -1,52 +1,43 @@
 (function () {
-'use strict'
+'use strict';
 
-angular.module('MenuApp')
-.config(RoutesConfig);
+	angular.module('MenuApp')
+		.config(RoutesConfig);
 
-RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
-function RoutesConfig($stateProvider, $urlRouterProvider) {
+		RoutesConfig.$inject = ['$stateProvider','$urlRouterProvider'];
+		function RoutesConfig ($stateProvider, $urlRouterProvider) {
 
-// Redirect to home page if no other URL matches
-$urlRouterProvider.otherwise('/home');
+			$urlRouterProvider.otherwise('/home');
 
-// *** Set up UI states ***
-$stateProvider
+			$stateProvider
 
-// Home page
-.state('home', {
-url: '/home',
-templateUrl: 'src/data/templates/home.template.html'
-})
+				.state('home', {
+					url: '/home',
+					templateUrl: 'src/Data/Templates/home.html'
+				})
+				.state('categories', {
+					url: '/categories',
+					templateUrl: 'src/Data/Templates/categories.template.html',
+					controller: 'CategoriesController as ctrl',
+					resolve: {
+						categoriesItems: ['MenuDataService', function(MenuDataService) {
+							console.log(this);
+							return MenuDataService.getAllCategories();
+						}]
+					}
+				})
+				.state('itemDetail', {
+					url: '/items/{shortName}',
+					templateUrl: 'src/Data/Templates/items.template.html',
+					controller: 'itemsController as ctrl',
+					resolve : {
+						item : ['$stateParams', 'MenuDataService',
+							function ($stateParams, MenuDataService) {
+								return MenuDataService.getItemsForCategory($stateParams.shortName);
 
-// Categories page
-.state('categories', {
-        url: '/categories',
-        templateUrl: 'src/data/templates/categories.template.html',
-        controller: 'CategoriesController as ctrl',
-        resolve: {
-          categoriesItems: ['MenuDataService', function(MenuDataService) {
-            console.log(this);
-            return MenuDataService.getAllCategories();
-          }]
-        }
-      })
-
-// Item detail
-.state('items', {
-url: '/items/{shortName}',
-templateUrl: 'src/data/templates/items.template.html',
-controller: 'ItemsController as ctrl',
-resolve: {
-  item: ['$stateParams', 'MenuDataService',
-    function ($stateParams, MenuDataService) {
-      return MenuDataService.getItemsForCategory($stateParams.shortName);
-    }
-  ]
-}
-});
-
-}
-
-
+							}
+						]
+					}
+				});
+		}
 })();

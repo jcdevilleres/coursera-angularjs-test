@@ -1,6 +1,5 @@
-(function () {
-'use strict'
+(function() {
 
-angular.module('Data', []);
+	angular.module('Data', []);
 
 })();
