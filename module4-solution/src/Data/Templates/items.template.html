@@ -1,13 +1,11 @@
-<div><span class="navigation" ui-sref="home">Home < </span><span class="navigation" ui-sref="categories">Categories</span></div>
+<div><span class="navigation" ui-sref="home">Click to Home < </span><span class="navigation" ui-sref="categories">Click to Categories</span></div>
 <br>
-<h3>This is the items template</h3>
+<h3>Items: </h3>
 
-<ul >
+<ol >
 	<li class="itemList" ng-repeat="items in ctrl.items">
-		{{items.short_name}} <br>
-		{{items.name}} <br>
+		{{items.short_name}} - {{items.name}} <br>
 		{{items.description}} <br>
 		<br>
-		<!-- {{items.special_instructions}} <br> -->
 	</li>
-</ul>
+</ol>

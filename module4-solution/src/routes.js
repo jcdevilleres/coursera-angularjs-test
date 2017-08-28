@@ -21,7 +21,6 @@
 					controller: 'CategoriesController as ctrl',
 					resolve: {
 						categoriesItems: ['MenuDataService', function(MenuDataService) {
-							console.log(this);
 							return MenuDataService.getAllCategories();
 						}]
 					}
@@ -34,9 +33,7 @@
 						item : ['$stateParams', 'MenuDataService',
 							function ($stateParams, MenuDataService) {
 								return MenuDataService.getItemsForCategory($stateParams.shortName);
-									// .then(function (shortName) {
-									// 	return items[$stateParams.shortName];
-									// });
+
 							}
 						]
 					}
