@@ -13,7 +13,7 @@
 
 				.state('home', {
 					url: '/home',
-					templateUrl: 'src/Data/Templates/home.template.html'
+					templateUrl: 'src/Data/Templates/home.html'
 				})
 				.state('categories', {
 					url: '/categories',
@@ -34,7 +34,9 @@
 						item : ['$stateParams', 'MenuDataService',
 							function ($stateParams, MenuDataService) {
 								return MenuDataService.getItemsForCategory($stateParams.shortName);
-
+									// .then(function (shortName) {
+									// 	return items[$stateParams.shortName];
+									// });
 							}
 						]
 					}

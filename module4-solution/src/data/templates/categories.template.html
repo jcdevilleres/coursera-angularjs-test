@@ -1,8 +1,13 @@
-<div><span ui-sref="home">Home</span></div>
-
-<h3> Categories page </h3>
+<div><span class="navigation" ui-sref="home">Home</span></div>
+<br>
+<h3>This is the categories page</h3>
 
 <ul>
 	<li ng-repeat="categoriesItem in ctrl.categories" ui-sref="itemDetail({shortName : categoriesItem.short_name})">
 		{{ categoriesItem.name }}, {{categoriesItem.short_name}}
 	</li>
+</ul>
+
+<!-- <categories-items categories = "ctrl.categories"></categories-items>
+
+<ui-view></ui-view> -->
