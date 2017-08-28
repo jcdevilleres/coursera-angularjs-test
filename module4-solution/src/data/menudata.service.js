@@ -18,12 +18,9 @@
 				url: 'https://davids-restaurant.herokuapp.com/categories.json'
 				})
 			.then(function (result) {
-				console.log(result);
-
 				return result.data;
 			})
 			.catch(function (error) {
-				console.log(error);
 				return error;
 			});
 
